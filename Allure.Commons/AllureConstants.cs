@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Allure.Commons
 {
@@ -13,6 +11,5 @@ namespace Allure.Commons
         public static String TEST_RESULT_CONTAINER_FILE_SUFFIX = "-container.json";
         public static String TEST_RUN_FILE_SUFFIX = "-testrun.json";
         public static String ATTACHMENT_FILE_SUFFIX = "-attachment";
-
     }
 }

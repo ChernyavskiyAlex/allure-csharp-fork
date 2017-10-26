@@ -1,7 +1,6 @@
 ﻿using Allure.Commons.Storage;
 using Allure.Commons.Writer;
 using HeyRed.Mime;
-using Microsoft.Extensions.Configuration;
 using System;
 using System.IO;
 
@@ -14,7 +13,6 @@ namespace Allure.Commons
         private IAllureResultsWriter writer;
         private static AllureLifecycle instance;
 
-        public IConfiguration Configuration { get; private set; }
         public string ResultsDirectory => writer.ToString();
         public static AllureLifecycle Instance
         {
@@ -31,20 +29,15 @@ namespace Allure.Commons
                 return instance;
             }
         }
-        protected AllureLifecycle(IConfigurationRoot configuration)
+        protected AllureLifecycle(string outDir)
         {
-            this.Configuration = configuration;
-            this.writer = GetDefaultResultsWriter(configuration);
+            this.writer = GetDefaultResultsWriter(outDir);
             this.storage = new AllureStorage();
         }
 
-        public static AllureLifecycle CreateInstance()
+        public static AllureLifecycle CreateInstance(string outDir = "allure-results")
         {
-            var config = new ConfigurationBuilder()
-                .AddJsonFile(AllureConstants.CONFIG_FILENAME, optional: true)
-                .Build();
-
-            return new AllureLifecycle(config);
+            return new AllureLifecycle(outDir);
         }
 
         #region TestContainer
@@ -283,12 +276,9 @@ namespace Allure.Commons
             storage.ClearStepContext();
             storage.StartStep(uuid);
         }
-        internal virtual IAllureResultsWriter GetDefaultResultsWriter(IConfigurationRoot configuration)
+        internal virtual IAllureResultsWriter GetDefaultResultsWriter(string outDir)
         {
-            var resultsFolder = configuration["allure:directory"]
-                ?? AllureConstants.DEFAULT_RESULTS_FOLDER;
-
-            return new FileSystemResultsWriter(resultsFolder);
+            return new FileSystemResultsWriter(outDir);
         }
 
         #endregion
