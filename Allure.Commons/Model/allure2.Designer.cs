@@ -4,20 +4,14 @@
 //    <NameSpace>Allure.Commons</NameSpace><Collection>List</Collection><codeType>CSharp</codeType><EnableDataBinding>False</EnableDataBinding><GenerateCloneMethod>False</GenerateCloneMethod><GenerateDataContracts>False</GenerateDataContracts><DataMemberNameArg>OnlyIfDifferent</DataMemberNameArg><DataMemberOnXmlIgnore>False</DataMemberOnXmlIgnore><CodeBaseTag>Net45</CodeBaseTag><InitializeFields>All</InitializeFields><GenerateUnusedComplexTypes>False</GenerateUnusedComplexTypes><GenerateUnusedSimpleTypes>False</GenerateUnusedSimpleTypes><GenerateXMLAttributes>False</GenerateXMLAttributes><OrderXMLAttrib>False</OrderXMLAttrib><EnableLazyLoading>False</EnableLazyLoading><VirtualProp>False</VirtualProp><PascalCase>False</PascalCase><AutomaticProperties>False</AutomaticProperties><PropNameSpecified>None</PropNameSpecified><PrivateFieldName>StartWithUnderscore</PrivateFieldName><PrivateFieldNamePrefix></PrivateFieldNamePrefix><EnableRestriction>False</EnableRestriction><RestrictionMaxLenght>False</RestrictionMaxLenght><RestrictionRegEx>False</RestrictionRegEx><RestrictionRange>False</RestrictionRange><ValidateProperty>False</ValidateProperty><ClassNamePrefix></ClassNamePrefix><ClassLevel>Public</ClassLevel><PartialClass>True</PartialClass><ClassesInSeparateFiles>False</ClassesInSeparateFiles><ClassesInSeparateFilesDir></ClassesInSeparateFilesDir><TrackingChangesEnable>False</TrackingChangesEnable><GenTrackingClasses>False</GenTrackingClasses><HidePrivateFieldInIDE>False</HidePrivateFieldInIDE><EnableSummaryComment>False</EnableSummaryComment><EnableAppInfoSettings>False</EnableAppInfoSettings><EnableExternalSchemasCache>False</EnableExternalSchemasCache><EnableDebug>False</EnableDebug><EnableWarn>False</EnableWarn><ExcludeImportedTypes>False</ExcludeImportedTypes><ExpandNesteadAttributeGroup>False</ExpandNesteadAttributeGroup><CleanupCode>False</CleanupCode><EnableXmlSerialization>False</EnableXmlSerialization><SerializeMethodName>Serialize</SerializeMethodName><DeserializeMethodName>Deserialize</DeserializeMethodName><SaveToFileMethodName>SaveToFile</SaveToFileMethodName><LoadFromFileMethodName>LoadFromFile</LoadFromFileMethodName><EnableEncoding>False</EnableEncoding><EnableXMLIndent>False</EnableXMLIndent><IndentChar>Indent2Space</IndentChar><NewLineAttr>False</NewLineAttr><OmitXML>False</OmitXML><Encoder>UTF8</Encoder><Serializer>JSonSerializer</Serializer><sspNullable>True</sspNullable><sspString>True</sspString><sspCollection>True</sspCollection><sspComplexType>True</sspComplexType><sspSimpleType>True</sspSimpleType><sspEnumType>True</sspEnumType><XmlSerializerEvent>False</XmlSerializerEvent><BaseClassName>EntityBase</BaseClassName><UseBaseClass>False</UseBaseClass><GenBaseClass>False</GenBaseClass><CustomUsings></CustomUsings><AttributesToExlude></AttributesToExlude>
 //  </auto-generated>
 // ------------------------------------------------------------------------------
+
+using System.Collections.Generic;
+using System.Diagnostics;
+
 #pragma warning disable
-namespace Allure.Commons
+namespace Allure.Commons.Model
 {
-    using System;
-    using System.Diagnostics;
-    using System.Xml.Serialization;
-    using System.Collections;
-    using System.Xml.Schema;
-    using System.ComponentModel;
-    using System.Xml;
-    using System.Collections.Generic;
-
-
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class TestRunResult
     {
 
@@ -52,7 +46,7 @@ namespace Allure.Commons
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class TestResultContainer
     {
 
@@ -207,12 +201,12 @@ namespace Allure.Commons
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class FixtureResult : ExecutableItem
     {
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public abstract partial class ExecutableItem
     {
 
@@ -397,7 +391,7 @@ namespace Allure.Commons
         skipped,
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class StatusDetails
     {
 
@@ -493,12 +487,12 @@ namespace Allure.Commons
         interrupted,
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class StepResult : ExecutableItem
     {
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class Attachment
     {
 
@@ -547,7 +541,7 @@ namespace Allure.Commons
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class Parameter
     {
 
@@ -582,7 +576,7 @@ namespace Allure.Commons
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class TestResult : ExecutableItem
     {
 
@@ -693,7 +687,7 @@ namespace Allure.Commons
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class Label
     {
 
@@ -728,7 +722,7 @@ namespace Allure.Commons
         }
     }
 
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [DebuggerStepThrough()]
     public partial class Link
     {
 

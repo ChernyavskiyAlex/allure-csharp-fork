@@ -1,4 +1,6 @@
-﻿namespace Allure.Commons.Writer
+﻿using Allure.Commons.Model;
+
+namespace Allure.Commons.Writer
 {
     interface IAllureResultsWriter
     {
