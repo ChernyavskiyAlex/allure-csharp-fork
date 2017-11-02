@@ -16,6 +16,12 @@ namespace Allure.Commons.NUnit
             _al.OneTimeSetUp(true);
         }
 
+        [OneTimeTearDown]
+        public void OneTimeTearDown()
+        {
+            _al.OneTimeTearDown();
+        }
+
         [SetUp]
         public void SetUp()
         {

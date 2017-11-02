@@ -21,11 +21,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Commons|AnyCPU'" />
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Adapters|AnyCPU'" />
-
-  <ItemGroup>
-    <Compile Include="AllureNUnit.cs" />
-  </ItemGroup>
-
+  
   <ItemGroup>
     <PackageReference Include="NUnit" Version="3.8.1" />
   </ItemGroup>
