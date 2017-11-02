@@ -8,7 +8,7 @@ using NUnit.Framework.Interfaces;
 
 namespace Allure.Commons.NUnit
 {
-    public class AllureNUnitSupport
+    public class AllureNUnit
     {
         public readonly AllureLifecycle Allure = AllureLifecycle.Instance;
 
@@ -31,7 +31,6 @@ namespace Allure.Commons.NUnit
 
         public void SetUp()
         {
-//            consoleOutput = new ConsoleOutput();
             var test = new TestResult
             {
                 uuid = TestContext.CurrentContext.Test.ID,
@@ -53,7 +52,6 @@ namespace Allure.Commons.NUnit
                 message = TestContext.CurrentContext.Result.Message,
                 trace = TestContext.CurrentContext.Result.StackTrace
             });
-
 
             var testMethod = obj.GetType().GetMethod(TestContext.CurrentContext.Test.MethodName);
 
@@ -93,6 +91,7 @@ namespace Allure.Commons.NUnit
                     Allure.UpdateTestCase(x => x.description = attribute.Properties.Get("Description").ToString());
                 }
             }
+
             Allure.StopTestCase(x => x.status = GetNunitStatus(TestContext.CurrentContext.Result.Outcome.Status));
             Allure.WriteTestCase(TestContext.CurrentContext.Test.ID);
         }

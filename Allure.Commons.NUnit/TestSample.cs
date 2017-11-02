@@ -4,14 +4,16 @@ using NUnit.Framework;
 
 namespace Allure.Commons.NUnit
 {
+    [TestFixture]
+    [Parallelizable(ParallelScope.Children)]
     public class Class1
     {
-        private readonly AllureNUnitSupport _al = new AllureNUnitSupport();
+        private readonly AllureNUnit _al = new AllureNUnit();
 
         [OneTimeSetUp]
         public void OneTimeSetUp()
         {
-            _al.OneTimeSetUp();
+            _al.OneTimeSetUp(true);
         }
 
         [SetUp]
@@ -26,10 +28,12 @@ namespace Allure.Commons.NUnit
         }
 
         [Test]  
-        [AllureIssue("123", "http://ya.ru")]
-        [AllureIssue("124", "http://ya.ru")]
+        [AllureIssue("ALR-1", "http://ya.ru")]
+        [AllureIssue("ALR-148", "http://ya.ru")]
+        [AllureTms("TMS-123", "http://ya.ru/TMS-123")]
         [Category("ASD")]
         [Category("132")]
+        [Description("OLOLOLOLOLOL")]
         [AllureStory("story123")]
         [AllureStory("story1234")]
         [AllureFeature("F1")]
@@ -38,7 +42,6 @@ namespace Allure.Commons.NUnit
         public void Passed()
         {
             Console.WriteLine(_al.Allure.ResultsDirectory);
-            Console.WriteLine("ASDSADSA");
         }
 
         [Test]
