@@ -4,7 +4,6 @@ using System;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Threading;
-using Allure.Commons.Model;
 
 [assembly: InternalsVisibleTo("Allure.Commons.Tests")]
 [assembly: InternalsVisibleTo("DynamicProxyGenAssembly2")]
@@ -60,7 +59,17 @@ namespace Allure.Commons.Writer
 
         private string Write(object allureObject, string fileSuffix)
         {
-            var filePath = Path.Combine(_outputDirectory, $"{Guid.NewGuid().ToString("N")}{fileSuffix}");
+            var type = allureObject.GetType();
+            var fileName = Guid.NewGuid().ToString("N");
+            if (type == typeof(TestResult))
+            {
+                fileName = ((TestResult) allureObject).uuid;
+            }
+            else if (type == typeof(TestResultContainer))
+            {
+                fileName = ((TestResultContainer) allureObject).uuid;
+            }
+            var filePath = Path.Combine(_outputDirectory, $"{fileName}{fileSuffix}");
             using (var fileStream = File.CreateText(filePath))
             {
                 _serializer.Serialize(fileStream, allureObject);

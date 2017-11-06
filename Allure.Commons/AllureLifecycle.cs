@@ -3,8 +3,6 @@ using Allure.Commons.Writer;
 using HeyRed.Mime;
 using System;
 using System.IO;
-using Allure.Commons.Model;
-
 namespace Allure.Commons
 {
     public sealed class AllureLifecycle
@@ -27,7 +25,6 @@ namespace Allure.Commons
                         _instance = _instance ?? CreateInstance();
                     }
                 }
-
                 return _instance;
             }
         }

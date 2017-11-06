@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 
 #pragma warning disable
-namespace Allure.Commons.Model
+namespace Allure.Commons
 {
     [DebuggerStepThrough()]
     public partial class TestRunResult

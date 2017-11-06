@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using Allure.Commons.Model;
 using Allure.Commons.NUnit.Attributes;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;

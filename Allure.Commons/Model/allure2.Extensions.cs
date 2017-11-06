@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Allure.Commons.Model
+namespace Allure.Commons
 {
     public partial class TestResultContainer
     {
