@@ -1,21 +1,25 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>0.0.1.0</AssemblyVersion>
-    <FileVersion>0.0.1.0</FileVersion>
-    <Version>2.1.1</Version>
+    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
+    <AssemblyVersion>0.1.2</AssemblyVersion>
+    <FileVersion>0.1.2</FileVersion>
+    <Version>0.1.2</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Authors>Alexander Bakanov</Authors>
-    <Company />
-    <Product />
-    <Description>.net standard implementation of Allure java-commons.</Description>
-    <PackageProjectUrl>https://github.com/allure-framework/allure-csharp/wiki/Allure.Commons</PackageProjectUrl>
+    <Authors>Alexander Bakanov, Nick Chursin</Authors>
+    <Company></Company>
+    <Product>Unickq.Allure.Commons</Product>
+    <Description>Allure-csharp fork for .NET 4.6
+Configuration.JSON is not being used</Description>
+    <PackageProjectUrl></PackageProjectUrl>
     <PackageTags>allure</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/allure-framework/allure-csharp/master/img/allure-net.png</PackageIconUrl>
     <SignAssembly>False</SignAssembly>
     <DelaySign>False</DelaySign>
     <AssemblyOriginatorKeyFile>key.snk</AssemblyOriginatorKeyFile>
+    <PackageId>Unickq.Allure.Commons</PackageId>
+    <AssemblyName>Allure.Fork.Commons</AssemblyName>
+    <RepositoryUrl>https://github.com/unickq/allure-csharp-fork</RepositoryUrl>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Commons|AnyCPU'" />
@@ -23,16 +27,8 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Adapters|AnyCPU'" />
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
-    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="2.0.0" />
     <PackageReference Include="MimeTypesMap" Version="1.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="allureConfig.json" Pack="true">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
 
 </Project>

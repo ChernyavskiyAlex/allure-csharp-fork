@@ -15,7 +15,12 @@ namespace Allure.SpecFlowPlugin
 {
     public class AllureTestTracerWrapper : TestTracer, ITestTracer
     {
-        private static readonly AllureLifecycle allure = AllureLifecycle.Instance;
+        private static readonly AllureLifecycle Allure = AllureLifecycle.Instance;
+
+        public AllureTestTracerWrapper(ITraceListener traceListener, IStepFormatter stepFormatter, IStepDefinitionSkeletonProvider stepDefinitionSkeletonProvider, RuntimeConfiguration runtimeConfiguration)
+            : base(traceListener, stepFormatter, stepDefinitionSkeletonProvider, runtimeConfiguration)
+        {
+        }
 
         void ITestTracer.TraceStep(StepInstance stepInstance, bool showAdditionalArguments)
         {
@@ -26,32 +31,32 @@ namespace Allure.SpecFlowPlugin
         void ITestTracer.TraceStepDone(BindingMatch match, object[] arguments, TimeSpan duration)
         {
             base.TraceStepDone(match, arguments, duration);
-            allure.StopStep(x => x.status = Status.passed);
+            Allure.StopStep(x => x.status = Status.passed);
         }
         void ITestTracer.TraceError(Exception ex)
         {
             base.TraceError(ex);
-            allure.StopStep(x => x.status = Status.failed);
+            Allure.StopStep(x => x.status = Status.failed);
             FailScenario(ex);
         }
 
         void ITestTracer.TraceStepSkipped()
         {
             base.TraceStepSkipped();
-            allure.StopStep(x => x.status = Status.skipped);
+            Allure.StopStep(x => x.status = Status.skipped);
         }
 
         void ITestTracer.TraceStepPending(BindingMatch match, object[] arguments)
         {
             base.TraceStepPending(match, arguments);
-            allure.StopStep(x => x.status = Status.skipped);
+            Allure.StopStep(x => x.status = Status.skipped);
         }
 
         void ITestTracer.TraceNoMatchingStepDefinition(StepInstance stepInstance, ProgrammingLanguage targetLanguage, CultureInfo bindingCulture, List<BindingMatch> matchesWithoutScopeCheck)
         {
             base.TraceNoMatchingStepDefinition(stepInstance, targetLanguage, bindingCulture, matchesWithoutScopeCheck);
-            allure.StopStep(x => x.status = Status.skipped);
-            allure.UpdateTestCase(x => x.status = Status.skipped);
+            Allure.StopStep(x => x.status = Status.skipped);
+            Allure.UpdateTestCase(x => x.status = Status.skipped);
         }
         private static void StartStep(StepInstance stepInstance)
         {
@@ -74,7 +79,7 @@ namespace Allure.SpecFlowPlugin
                 stepResult.parameters = parameters;
             }
 
-            allure.StartStep(AllureHelper.NewId(), stepResult);
+            Allure.StartStep(AllureHelper.NewId(), stepResult);
 
             // add csv table for multi-row table
             if (table != null && table.RowCount != 1)
@@ -96,14 +101,14 @@ namespace Allure.SpecFlowPlugin
                         csv.NextRecord();
                     }
                 }
-                allure.AddAttachment("table", "text/csv", csvFile);
+                Allure.AddAttachment("table", "text/csv", csvFile);
             }
 
         }
 
         private static void FailScenario(Exception ex)
         {
-            allure.UpdateTestCase(
+            Allure.UpdateTestCase(
                 x =>
                 {
                     x.status = (x.status != Status.none) ? x.status : Status.failed;
@@ -113,10 +118,6 @@ namespace Allure.SpecFlowPlugin
                         trace = ex.StackTrace
                     };
                 });
-        }
-
-        public AllureTestTracerWrapper(ITraceListener traceListener, IStepFormatter stepFormatter, IStepDefinitionSkeletonProvider stepDefinitionSkeletonProvider, SpecFlowConfiguration specFlowConfiguration) : base(traceListener, stepFormatter, stepDefinitionSkeletonProvider, specFlowConfiguration)
-        {
         }
     }
 }

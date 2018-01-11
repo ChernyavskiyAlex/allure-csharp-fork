@@ -10,16 +10,16 @@ namespace Allure.SpecFlowPlugin
 {
     internal static class AllureHelper
     {
-        private static readonly ScenarioInfo emptyScenarioInfo = new ScenarioInfo(string.Empty);
+        private static readonly ScenarioInfo EmptyScenarioInfo = new ScenarioInfo(string.Empty);
 
-        private static readonly FeatureInfo emptyFeatureInfo = new FeatureInfo(
-            CultureInfo.CurrentCulture, string.Empty, string.Empty, new string[0]);
+        private static readonly FeatureInfo EmptyFeatureInfo = new FeatureInfo(
+            CultureInfo.CurrentCulture, string.Empty, string.Empty);
 
         internal static string GetFeatureContainerId(FeatureInfo featureInfo)
         {
             var id = (featureInfo != null) ?
                 featureInfo.GetHashCode().ToString() :
-                emptyFeatureInfo.GetHashCode().ToString();
+                EmptyFeatureInfo.GetHashCode().ToString();
 
             return id;
         }
@@ -33,8 +33,8 @@ namespace Allure.SpecFlowPlugin
 
         internal static TestResult StartTestCase(string containerId, FeatureContext featureContext, ScenarioContext scenarioContext)
         {
-            var featureInfo = featureContext?.FeatureInfo ?? emptyFeatureInfo;
-            var scenarioInfo = scenarioContext?.ScenarioInfo ?? emptyScenarioInfo;
+            var featureInfo = featureContext?.FeatureInfo ?? EmptyFeatureInfo;
+            var scenarioInfo = scenarioContext?.ScenarioInfo ?? EmptyScenarioInfo;
 
             var testResult = new TestResult()
             {
@@ -53,7 +53,7 @@ namespace Allure.SpecFlowPlugin
 
             AllureLifecycle.Instance.StartTestCase(containerId, testResult);
             scenarioContext?.Set(testResult);
-            featureContext.Get<HashSet<TestResult>>().Add(testResult);
+            featureContext?.Get<HashSet<TestResult>>().Add(testResult);
 
             return testResult;
         }
@@ -73,7 +73,7 @@ namespace Allure.SpecFlowPlugin
             };
             AllureLifecycle.Instance.StartTestContainer(containerId, scenarioContainer);
             scenarioContext?.Set(scenarioContainer);
-            featureContext.Get<HashSet<TestResultContainer>>().Add(scenarioContainer);
+            featureContext?.Get<HashSet<TestResultContainer>>().Add(scenarioContainer);
 
             return scenarioContainer;
         }

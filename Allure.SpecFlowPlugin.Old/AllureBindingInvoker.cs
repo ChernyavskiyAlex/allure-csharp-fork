@@ -17,6 +17,9 @@ namespace Allure.SpecFlowPlugin
     {
         private static readonly AllureLifecycle Allure = AllureLifecycle.Instance;
 
+        public AllureBindingInvoker(RuntimeConfiguration runtimeConfiguration, IErrorProvider errorProvider) : base(runtimeConfiguration, errorProvider)
+        {
+        }
         public override object InvokeBinding(IBinding binding, IContextManager contextManager, object[] arguments, ITestTracer testTracer, out TimeSpan duration)
         {
             // process hook
@@ -36,11 +39,8 @@ namespace Allure.SpecFlowPlugin
                             };
                             Allure.StartTestContainer(featureContainer);
 
-                            if (contextManager.FeatureContext != null)
-                            {
-                                contextManager.FeatureContext.Set(new HashSet<TestResultContainer>());
-                                contextManager.FeatureContext.Set(new HashSet<TestResult>());
-                            }
+                            contextManager.FeatureContext.Set(new HashSet<TestResultContainer>());
+                            contextManager.FeatureContext.Set(new HashSet<TestResult>());
 
                             return base.InvokeBinding(binding, contextManager, arguments, testTracer, out duration);
                         }
@@ -170,10 +170,10 @@ namespace Allure.SpecFlowPlugin
                             }
                             catch (Exception ex)
                             {
-                                var scenario = contextManager.FeatureContext?.Get<HashSet<TestResult>>().Last();
+                                var scenario = contextManager.FeatureContext.Get<HashSet<TestResult>>().Last();
                                 Allure
                                     .StopFixture(x => x.status = Status.broken)
-                                    .UpdateTestCase(scenario?.uuid,
+                                    .UpdateTestCase(scenario.uuid,
                                         x =>
                                         {
                                             x.status = Status.broken;
@@ -194,10 +194,10 @@ namespace Allure.SpecFlowPlugin
                             }
                         }
 
-//                    case HookType.BeforeScenarioBlock:
-//                    case HookType.AfterScenarioBlock:
-//                    case HookType.BeforeTestRun:
-//                    case HookType.AfterTestRun:
+                    case HookType.BeforeScenarioBlock:
+                    case HookType.AfterScenarioBlock:
+                    case HookType.BeforeTestRun:
+                    case HookType.AfterTestRun:
                     default:
                         return base.InvokeBinding(binding, contextManager, arguments, testTracer, out duration);
                 }
@@ -259,10 +259,6 @@ namespace Allure.SpecFlowPlugin
                     .StopTestContainer(c.uuid)
                     .WriteTestContainer(c.uuid);
             }
-        }
-
-        public AllureBindingInvoker(SpecFlowConfiguration specFlowConfiguration, IErrorProvider errorProvider) : base(specFlowConfiguration, errorProvider)
-        {
         }
     }
 }

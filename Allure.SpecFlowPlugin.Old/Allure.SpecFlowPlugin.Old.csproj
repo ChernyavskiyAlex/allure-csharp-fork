@@ -1,24 +1,25 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
-    <PackageId>Unickq.Allure.SpecFlowPlugin</PackageId>
+    <TargetFrameworks>net46</TargetFrameworks>
+    <PackageId>Unickq.Allure.SpecFlowPlugin.Old</PackageId>
     <Version>0.1.2</Version>
     <Authors>Alexander Bakanov, Nick Chursin</Authors>
     <Company />
-    <Product />
-    <Description>Fork of SpecFlow 2.2 Allure plugin by Alexander Bakanov</Description>
+    <Product>Unickq.Allure.Old.SpecFlowPlugin</Product>
+    <Description>Fork of SpecFlow 2.1 Allure plugin by Alexander Bakanov</Description>
     <PackageProjectUrl></PackageProjectUrl>
     <PackageIconUrl>https://raw.githubusercontent.com/allure-framework/allure-csharp/master/img/allure-specflow.png</PackageIconUrl>
     <RepositoryUrl>https://github.com/unickq/allure-csharp-fork</RepositoryUrl>
     <PackageTags>specflow allure</PackageTags>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <AssemblyName>Allure.Fork.SpecFlowPlugin</AssemblyName>
+    <AssemblyName>Allure.Fork.Old.SpecFlowPlugin</AssemblyName>
+    <RootNamespace>Allure.SpecFlowPlugin</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="2.16.3" />
-    <PackageReference Include="SpecFlow" Version="2.2.1" />
+    <PackageReference Include="SpecFlow" Version="[2.1.0]" />
     <PackageReference Include="Unickq.Allure.Commons" Version="0.1.2" />
   </ItemGroup>
   <ItemGroup>
