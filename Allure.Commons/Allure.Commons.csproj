@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net46</TargetFrameworks>
-    <AssemblyVersion>0.1.2</AssemblyVersion>
-    <FileVersion>0.1.2</FileVersion>
-    <Version>0.1.2</Version>
+    <TargetFrameworks>netstandard2.0;net45</TargetFrameworks>
+    <AssemblyVersion>0.1.3</AssemblyVersion>
+    <FileVersion>0.1.3</FileVersion>
+    <Version>0.1.3</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Authors>Alexander Bakanov, Nick Chursin</Authors>
     <Company></Company>
     <Product>Unickq.Allure.Commons</Product>
-    <Description>Allure-csharp fork for .NET 4.6
+    <Description>Allure-csharp fork for .NET 4.5
 Configuration.JSON is not being used</Description>
-    <PackageProjectUrl></PackageProjectUrl>
+    <PackageProjectUrl>https://github.com/allure-framework</PackageProjectUrl>
     <PackageTags>allure</PackageTags>
     <PackageIconUrl>https://raw.githubusercontent.com/allure-framework/allure-csharp/master/img/allure-net.png</PackageIconUrl>
     <SignAssembly>False</SignAssembly>
@@ -20,6 +20,8 @@ Configuration.JSON is not being used</Description>
     <PackageId>Unickq.Allure.Commons</PackageId>
     <AssemblyName>Allure.Fork.Commons</AssemblyName>
     <RepositoryUrl>https://github.com/unickq/allure-csharp-fork</RepositoryUrl>
+    <PackageReleaseNotes>Removed ToUnixTimeMilliseconds in order to support .NET45;
+Moved MimeTypesMap inside;</PackageReleaseNotes>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Commons|AnyCPU'" />
@@ -27,7 +29,6 @@ Configuration.JSON is not being used</Description>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Adapters|AnyCPU'" />
 
   <ItemGroup>
-    <PackageReference Include="MimeTypesMap" Version="1.0.2" />
     <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
   </ItemGroup>
 

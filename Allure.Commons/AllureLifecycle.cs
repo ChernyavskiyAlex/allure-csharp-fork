@@ -27,6 +27,7 @@ namespace Allure.Commons
                         _instance = _instance ?? CreateInstance();
                     }
                 }
+
                 return _instance;
             }
         }
@@ -46,7 +47,7 @@ namespace Allure.Commons
 
         public AllureLifecycle StartTestContainer(TestResultContainer container)
         {
-            container.start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            container.start = ToUnixTimestamp(DateTimeOffset.Now);
             _storage.Put(container.uuid, container);
             return this;
         }
@@ -66,7 +67,7 @@ namespace Allure.Commons
 
         public AllureLifecycle StopTestContainer(string uuid)
         {
-            UpdateTestContainer(uuid, c => c.stop = DateTimeOffset.Now.ToUnixTimeMilliseconds());
+            UpdateTestContainer(uuid, c => c.stop = ToUnixTimestamp(DateTimeOffset.Now));
             return this;
         }
 
@@ -117,7 +118,7 @@ namespace Allure.Commons
             var fixture = _storage.Remove<FixtureResult>(uuid);
             _storage.ClearStepContext();
             fixture.stage = Stage.finished;
-            fixture.stop = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            fixture.stop = ToUnixTimestamp(DateTimeOffset.Now);
             return this;
         }
 
@@ -134,7 +135,7 @@ namespace Allure.Commons
         public AllureLifecycle StartTestCase(TestResult testResult)
         {
             testResult.stage = Stage.running;
-            testResult.start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            testResult.start = ToUnixTimestamp(DateTimeOffset.Now);
             _storage.Put(testResult.uuid, testResult);
             _storage.ClearStepContext();
             _storage.StartStep(testResult.uuid);
@@ -162,7 +163,7 @@ namespace Allure.Commons
         {
             var testResult = _storage.Get<TestResult>(uuid);
             testResult.stage = Stage.finished;
-            testResult.stop = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            testResult.stop = ToUnixTimestamp(DateTimeOffset.Now);
             _storage.ClearStepContext();
             return this;
         }
@@ -186,7 +187,7 @@ namespace Allure.Commons
         public AllureLifecycle StartStep(string parentUuid, string uuid, StepResult stepResult)
         {
             stepResult.stage = Stage.running;
-            stepResult.start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            stepResult.start = ToUnixTimestamp(DateTimeOffset.Now);
             _storage.StartStep(uuid);
             _storage.AddStep(parentUuid, uuid, stepResult);
             return this;
@@ -214,7 +215,7 @@ namespace Allure.Commons
         {
             var step = _storage.Remove<StepResult>(uuid);
             step.stage = Stage.finished;
-            step.stop = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            step.stop = ToUnixTimestamp(DateTimeOffset.Now);
             _storage.StopStep();
             return this;
         }
@@ -284,7 +285,7 @@ namespace Allure.Commons
         {
             _storage.Put(uuid, fixtureResult);
             fixtureResult.stage = Stage.running;
-            fixtureResult.start = DateTimeOffset.Now.ToUnixTimeMilliseconds();
+            fixtureResult.start = ToUnixTimestamp(DateTimeOffset.Now);
             _storage.ClearStepContext();
             _storage.StartStep(uuid);
         }
@@ -295,5 +296,10 @@ namespace Allure.Commons
         }
 
         #endregion
+
+        public static long ToUnixTimestamp(DateTimeOffset value)
+        {
+            return (long) value.UtcDateTime.Subtract(new DateTime(1970, 1, 1)).TotalSeconds;
+        }
     }
 }

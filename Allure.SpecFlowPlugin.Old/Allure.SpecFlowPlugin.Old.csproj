@@ -1,9 +1,9 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFrameworks>net46</TargetFrameworks>
+    <TargetFrameworks>net45</TargetFrameworks>
     <PackageId>Unickq.Allure.SpecFlowPlugin.Old</PackageId>
-    <Version>0.1.2</Version>
+    <Version>0.1.3</Version>
     <Authors>Alexander Bakanov, Nick Chursin</Authors>
     <Company />
     <Product>Unickq.Allure.Old.SpecFlowPlugin</Product>
@@ -15,12 +15,13 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <AssemblyName>Allure.Fork.Old.SpecFlowPlugin</AssemblyName>
     <RootNamespace>Allure.SpecFlowPlugin</RootNamespace>
+    <PackageReleaseNotes>NET45</PackageReleaseNotes>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="2.16.3" />
     <PackageReference Include="SpecFlow" Version="[2.1.0]" />
-    <PackageReference Include="Unickq.Allure.Commons" Version="0.1.2" />
+    <PackageReference Include="Unickq.Allure.Commons" Version="0.1.3" />
   </ItemGroup>
   <ItemGroup>
     <None Update="App.config.transform" Pack="true">
